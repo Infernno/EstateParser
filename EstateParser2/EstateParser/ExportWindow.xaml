@@ -1,0 +1,147 @@
+﻿<Window x:Class="EstateParser.ExportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Estate Parser - экспорт данных" Height="587" Width="267" ResizeMode="NoResize"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ComboBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ProgressBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Margin="10">
+            <ComboBox Margin="0, 0, 0, 10" 
+                      IsEditable="True" 
+                      materialDesign:HintAssist.Hint="Название объявления"   
+                      MaxDropDownHeight="250"
+                      Text="{Binding  RequiredTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0, 0, 0, 10" />
+            <TextBlock>
+                Цена
+            </TextBlock>
+            <WrapPanel Orientation="Horizontal" Margin="0, 10, 0, 10" HorizontalAlignment="Center">
+                <ComboBox 
+                        
+                          MinWidth="100"
+                          IsEditable="True" 
+                          materialDesign:HintAssist.Hint="От"   
+                          MaxDropDownHeight="250"
+                          Text="{Binding RequiredPriceBegin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="109"/>
+
+                <Rectangle Margin="7 0 8 0" 
+                               VerticalAlignment="Stretch" 
+                               Width="15" 
+                               Height="0.9" 
+                               Fill="LightGray"/>
+                <ComboBox 
+                    MinWidth="100"
+                    IsEditable="True" 
+                    materialDesign:HintAssist.Hint="До"   
+                    MaxDropDownHeight="250"
+                    Text="{Binding RequiredPriceEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+            <ComboBox 
+                IsEditable="True" 
+                materialDesign:HintAssist.Hint="Город"   
+                MaxDropDownHeight="250"
+                Text="{Binding RequiredCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0, 0, 0, 10" />
+            <ComboBox Margin="0, 0, 0, 10"
+                      materialDesign:HintAssist.Hint="Источник данных"
+                      IsEditable="False"
+                      Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                      ItemsSource="{Binding Providers}"
+                      SelectedItem="{Binding ProviderSelection}">
+            </ComboBox>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0, 0, 0, 10" />
+            <ComboBox 
+                materialDesign:HintAssist.Hint="Тип объявления"
+                IsEditable="False"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                ItemsSource="{Binding AdsCount}"
+                SelectedItem="{Binding AdsToExport}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10" />
+            <TextBlock>
+                Площадь
+            </TextBlock>
+            <WrapPanel Orientation="Horizontal" Margin="0, 10, 0, 10" HorizontalAlignment="Center">
+                <ComboBox 
+                    MinWidth="100"
+                    IsEditable="True" 
+                    materialDesign:HintAssist.Hint="От"   
+                    MaxDropDownHeight="250"
+                    Text="{Binding RequiredPriceBegin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="109"/>
+
+                <Rectangle Margin="7 0 8 0" 
+                           VerticalAlignment="Stretch" 
+                           Width="15" 
+                           Height="0.9" 
+                           Fill="LightGray"/>
+                <ComboBox 
+                    MinWidth="100"
+                    IsEditable="True" 
+                    materialDesign:HintAssist.Hint="До"   
+                    MaxDropDownHeight="250"
+                    Text="{Binding RequiredPriceEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </WrapPanel>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10" />
+            <ComboBox 
+                materialDesign:HintAssist.Hint="Тип сделки"
+                IsEditable="False"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                ItemsSource="{Binding AdsCount}"
+                SelectedItem="{Binding AdsToExport}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10" />
+            <ComboBox 
+                materialDesign:HintAssist.Hint="Количество объявлений для экспорта"
+                IsEditable="False"
+                Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                ItemsSource="{Binding AdsCount}"
+                SelectedItem="{Binding AdsToExport}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10" />
+            <Button Margin="0 10 0 0"
+                            Command="{Binding Export}"
+                            Style="{StaticResource MaterialDesignRaisedButton}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock>
+                        Экспорт данных в Excel
+                    </TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
