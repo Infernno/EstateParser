@@ -1,5 +1,5 @@
 # Estate Parser
-![Главный экран](https://raw.githubusercontent.com/Infernno/EstateParser/master/screenshots/main.png)
+![Главный экран](https://raw.githubusercontent.com/Infernno/EstateParser/master/screenshots/main.PNG)
 
 Estate Parser - небольшой парсер недвижимости на WPF и HtmlAgilityPack
 
